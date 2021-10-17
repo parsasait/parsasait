@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+
+    div.mbox{
+     text-align:center;
+    }
+    
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="page.css">
+    <style>
+
+      body{
+       background-color:#ffffff;
+       font-family:tahoma;
+      }
+      
+      .mybox{
+       background-color:#fff;
+       padding:10px;
+       margin:10px auto;
+       max-width:500px;
+       text-align:center;
+      }
+      
+      </style>
+<body onload="GetCookie();" >
+
+  <body onload="get();">
+
+    <div class="mybox">
+     <button onclick="set();">اسمتو وارد کن</button>
+     <p id="Result" dir="rtl"></p>
+    </div>
+    
+    <script>
+    
+    function set(){
+     var user_name,result;
+     result = document.getElementById("Result");
+     user_name = prompt("اسم شما چیه؟");
+     if( user_name == null || user_name == "" ){
+       result.innerHTML ="دیگه اذیت نکن، یه چیزی وارد کن";
+     }
+     else{
+       localStorage.setItem("UserName", user_name);
+       get();
+     }
+    }
+    
+    function get(){
+     var result = document.getElementById("Result");
+     var Uname = localStorage.getItem("UserName");
+     result.innerHTML = " سلام " + Uname + " به سایت من خوش آمدید ";
+    }
+    
+    </script>
+    
+    </body>
+
+  <canvas id="canvas" width="100" height="100"
+  style="background-color:rgb(255, 255, 255)">
+  </canvas>
+  
+  <script>
+  var canvas = document.getElementById("canvas");
+  var ctx = canvas.getContext("2d");
+  var radius = canvas.height / 2;
+  ctx.translate(radius, radius);
+  radius = radius * 0.90
+  setInterval(drawClock, 1000);
+  
+  function drawClock() {
+    drawFace(ctx, radius);
+    drawNumbers(ctx, radius);
+    drawTime(ctx, radius);
+  }
+  
+  function drawFace(ctx, radius) {
+    var grad;
+    ctx.beginPath();
+    ctx.arc(0, 0, radius, 0, 2*Math.PI);
+    ctx.fillStyle = 'white';
+    ctx.fill();
+    grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+    grad.addColorStop(0, '#333');
+    grad.addColorStop(0.5, 'white');
+    grad.addColorStop(1, '#333');
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = radius*0.1;
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
+    ctx.fillStyle = '#333';
+    ctx.fill();
+  }
+  
+  function drawNumbers(ctx, radius) {
+    var ang;
+    var num;
+    ctx.font = radius*0.15 + "px arial";
+    ctx.textBaseline="middle";
+    ctx.textAlign="center";
+    for(num = 1; num < 13; num++){
+      ang = num * Math.PI / 6;
+      ctx.rotate(ang);
+      ctx.translate(0, -radius*0.85);
+      ctx.rotate(-ang);
+      ctx.fillText(num.toString(), 0, 0);
+      ctx.rotate(ang);
+      ctx.translate(0, radius*0.85);
+      ctx.rotate(-ang);
+    }
+  }
+  
+  function drawTime(ctx, radius){
+      var now = new Date();
+      var hour = now.getHours();
+      var minute = now.getMinutes();
+      var second = now.getSeconds();
+      //hour
+      hour=hour%12;
+      hour=(hour*Math.PI/6)+
+      (minute*Math.PI/(6*60))+
+      (second*Math.PI/(360*60));
+      drawHand(ctx, hour, radius*0.5, radius*0.07);
+      //minute
+      minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+      drawHand(ctx, minute, radius*0.8, radius*0.07);
+      // second
+      second=(second*Math.PI/30);
+      drawHand(ctx, second, radius*0.9, radius*0.02);
+  }
+  
+  function drawHand(ctx, pos, length, width) {
+      ctx.beginPath();
+      ctx.lineWidth = width;
+      ctx.lineCap = "round";
+      ctx.moveTo(0,0);
+      ctx.rotate(pos);
+      ctx.lineTo(0, -length);
+      ctx.stroke();
+      ctx.rotate(-pos);
+  }
+  </script
+
+
+    
+          
+      
+
+
+
+  <img src="img/p.png" height="60" alt="">
+
+
+
+    <center><img src="img/parsa.png" height="200"  alt=""></center>
+
+          
+
+    <div class="box box-solid"  dir="rtl"  >
+        <div class="box-header with-border">
+          <div class="box-tools">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">+<i class="fa fa-minus"></i>
+            </button>
+
+          </div>
+        </div>
+        <div class="box-body no-padding">
+          <ul class="nav nav-pills nav-stacked">
+
+            <div class="p" >
+    
+                <fieldset style="width: 40%; background-color: rgb(190, 218, 218);float: right; " dir="rtl"  >
+                    <center><p style="background-color: rgb(59, 56, 56); color: blanchedalmond;"   >بخش ها</p></center>
+                   
+         <hr>
+                    <a href="game1.html">   <img src="img/game.jpg" height="35" alt=""> بازی ها  </a>
+                    <hr>
+                    <a href="برنامه نویسی.html">   <img src="img/bar.jpg" height="35" alt=""> بخش برنامه نویسی   </a>
+                    <hr>
+                    <a href="video.html">video</a>
+                 </fieldset>
+            </div>
+            
+          </ul>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /. box -->
+      <div class="box box-solid">
+
+
+
+    <script src="jquery.min.js"></script>
+
+    <script src="adminlte.min.js"></script>
+
+
+                  <div class="box-header with-border">
+                    <div class="box-tools">
+                      <button type="button" class="btn btn-box-tool" data-widget="collapse">+<i class="fa fa-minus"></i>
+                      </button>
+          
+                    </div>
+                  </div>
+                  <div class="box-body no-padding">
+                    <ul class="nav nav-pills nav-stacked">
+          
+                      <fieldset style="width:30%; background-color: rgb(0, 248, 248); "  >
+        <center>                <p style="background-color: rgb(59, 56, 56); color: blanchedalmond;"   >ابزار ها</p></center>
+                         <a href="index1.html">   <img src="img/mash.png" height="30" alt=""> ماشین حساب   </a>
+                       <hr>
+                         <a href="2page.html">    بازکردن 2 صفحه  </a>
+             <hr>
+                         <a href="sha.html">   <img src="img/icon.png" height="20" alt="">  یاداشت ها </a>
+       
+                         <hr>
+                         <div class="mbox"  style=" background-color: rgb(0, 248, 248); " >
+                          <hr>
+                         <p>تغیر رنگ پس زمینه سایت</p>
+                         <p><input type="color" id="Color_Input" onchange="Set_Bg_Color();"></p>
+                         <hr>
+                         
+                         
+                         </div>
+                         
+                         <script>
+                         
+                         var setCookie = function (n, val) {
+                             var exdays = 30;
+                             var d = new Date();
+                             d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                             var expires = "expires=" + d.toGMTString();
+                             document.cookie = n + "=" + val + "; " + expires;
+                         };
+                         
+                         var getCookie = function (n) {
+                             var name = n + "=";
+                             var ca = document.cookie.split(';');
+                             for (var i = 0; i < ca.length; i++) {
+                                 var c = ca[i];
+                                 while (c.charAt(0) == ' ') c = c.substring(1);
+                                 if (c.indexOf(name) == 0) {
+                                     return c.substring(name.length, c.length);
+                                 }
+                             }
+                             return "";
+                         };
+                         
+                         window.onload = function () {
+                             var favColor = document.body.style.backgroundColor;
+                             var color = getCookie('color');
+                             if (color === '') {
+                                 document.body.style.backgroundColor = favColor;
+                             } else {
+                               document.body.style.backgroundColor = color;
+                             }
+                         };
+                         
+                         function Set_Bg_Color(){
+                           var Get_User_Color = document.getElementById("Color_Input").value;
+                           setCookie('color', Get_User_Color);
+                           document.body.style.backgroundColor = Get_User_Color;
+                         }
+                         
+                         </script>
+                         
+                    </ul>
+                  </div>
+                  <!-- /.box-body -->
+                </div>
+                <!-- /. box -->
+                <div class="box box-solid">
+          
+
+</body>
+</html>
